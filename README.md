@@ -1,5 +1,8 @@
 # company-helper
 
-Contributors:  
+Contributors:
 1. Chai Wai Jin
-2. Lee Yi Mei
+2. Chan Yanhan
+3. Hang Jui Kai
+4. Lim Jun Feng
+5. Lee Yi Mei
