@@ -128,9 +128,10 @@ def main():
     if uploaded_file:
         # save the uploaded file in a directory
         save_uploaded_file(uploaded_file)
-        text = extract_text_from_pdf(uploaded_file.name)
-        summary = summarize_resume(text, client, softskill_options, programming_languages_options)
-        st.write(summary.choices[0].message.content)
+        if st.button("Generate Resume Summary"):
+            text = extract_text_from_pdf(uploaded_file.name)
+            summary = summarize_resume(text, client, softskill_options, programming_languages_options)
+            st.write(summary.choices[0].message.content)
 
 
 if __name__ == "__main__":
