@@ -50,10 +50,7 @@ def summarize_resume(text, client, softskill_criteria, promgramming_language_cri
 
     return summary_response
 
-
-if __name__ == "__main__":
-    load_dotenv()
-    client = OpenAI(api_key=os.getenv("OPENAI_SECRET"))
+def main():
     st.title("Revolutionising Recruiment with AI")
     softskill_options = st.multiselect("Select the soft-skills required for the job position", SOFT_SKILLS)
     programming_languages_options = st.multiselect("Select the programming languages required for the job position", PROGRAMMING_LANGUAGES)
@@ -65,3 +62,9 @@ if __name__ == "__main__":
         text = extract_text_from_pdf(uploaded_file.name)
         summary = summarize_resume(text, client, softskill_options, programming_languages_options)
         st.write(summary.choices[0].message.content)
+
+if __name__ == "__main__":
+    load_dotenv()
+    client = OpenAI(api_key=os.getenv("OPENAI_SECRET"))
+    main()
+    
