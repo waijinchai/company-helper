@@ -5,19 +5,64 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from st_pages import Page, show_pages, add_page_title
 
-
+# CSS Style
 button_style = """
     <style>
-    div.stButton > button:first-child {
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
+    .custom-button {
+        color: white;
+        background-color: transparent;
+        padding: 10px 20px;
+        border: 2px solid #33709C;
+        border-radius: 5px;
         cursor: pointer;
-        width: 100%;
+        transition: background-color 0.3s ease;
+        margin-top: -1em;
+    }
+    .custom-button:hover {
+        background-color: rgba(51, 112, 156, 0.5);
     }
     </style>
 """
+
+custom_blue_button = """
+    <style>
+    .custom-blue-button {
+        color: white;
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        padding: 0.5em;
+        margin-top: -1em;
+    }
+    .custom-blue-button:hover {
+        color: #A8D9E8;
+        border: 1px solid #A8D9E8;
+    }
+    </style>
+"""
+
+tag_style = """
+    <style>
+    .tag {
+        background-color: #e0e0e0;
+        color: #333;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-right: 5px;
+        font-size: 12px;
+        display: inline-block;
+    }
+    </style>
+"""
+
+# Theme
+custom_green_color = "#8ed470"
+custom_yellow_color = "#d6ca83"
+custom_red_color = "#D48585"
+custom_grey_color = "#EFF1F2"
+
 
 # Static Variables
 SOFT_SKILLS = ["Leadership", "Problem Solving", "Teamwork", "Time Management", "Creativity", "Critical Thinking", "Confidence", "Communication"]
@@ -41,6 +86,50 @@ ROLE_DATA = [
         "status": "Close"
     },
     ]
+
+CANDIDATES_DATA = [
+    {
+        "name": "Chai Wai Jin",
+        "matching_percentage": 88,
+        "matching_criteria": [
+            "Communication",
+            "Teamwork",
+            "Problem-solving",
+            "Adaptability"
+        ]
+    },
+    {
+        "name": "Chan Yanhan",
+        "matching_percentage": 88,
+        "matching_criteria": [
+            "Leadership",
+            "Work ethic",
+            "Attention to detail",
+            "Decision-making",
+            "Stress management"
+        ]
+    },
+    {
+        "name": "Lim Jun Feng",
+        "matching_percentage": 72,
+        "matching_criteria": [
+            "Decision-making",
+            "Stress management",
+            "Negotiation",
+            "Networking",
+            "Customer service",
+            "Active listening"
+        ]
+    },
+    {
+        "name": "Hang Jui Kai",
+        "matching_percentage": 47,
+        "matching_criteria": [
+            "Decision-making",
+            "Stress management"
+        ]
+    }
+]
 
 ROLE = None
 
@@ -102,27 +191,6 @@ def generate_job_description(job_title, job_requirement, client):
     return job_description_response
 
 
-def new_position():
-    st.title("Create New Position")
-    st.text("AI-powered tool to generate Job Description instantly")
-    job_title = st.text_input("Job Title:")
-    job_requirement = st.text_input("Job Requirement:")
-
-    if st.button("Generate Job Description"):
-        st.text_area(
-            label="Generated Job Description",
-            value=generate_job_description(job_title, job_requirement, client).choices[0].message.content,
-            height=400,
-            max_chars=None,
-            key=None
-        )
-
-
-def matching_candidates():
-    st.title("Matching Candidates")
-    st.header(ROLE)
-
-
 def save_uploaded_file(uploaded_file):
     SAVE_PATH = "./resume/"
     try:
@@ -163,26 +231,15 @@ def summarize_resume(text, client, softskill_criteria, promgramming_language_cri
 
     return summary_response
 
-
+# Component Rendering
 def main():
     st.title("Revolunizing Recruitment")
-    job_list_container = st.container(border=True)
-    job_list_container.header("Job Listing")
-    for item in ROLE_DATA:
-        role, date, status = job_list_container.columns([2, 1, 1], gap="large", vertical_alignment="top")
-        
-        date.text(item["starting_date"])
-        status.text(item["status"])
-        role.markdown(button_style, unsafe_allow_html=True)
-
-        if role.button(item["role"], key=item["role"]):
-            ROLE = item["role"]
+    st.text("Reshaping the future of hiring and talent acquisition")
         
     st.title("Summarise Resume")
     softskill_options = st.multiselect("Select the soft-skills required for the job position", SOFT_SKILLS)
     programming_languages_options = st.multiselect("Select the programming languages required for the job position", PROGRAMMING_LANGUAGES)
     uploaded_file = st.file_uploader("Upload a Resume", type=["pdf"])
-
 
     if uploaded_file:
         # save the uploaded file in a directory
@@ -193,10 +250,107 @@ def main():
             st.write(summary.choices[0].message.content)
 
 
+def show_job_listing():
+    job_list_container = st.container(border=True)
+    job_list_container.header("Job Listing")
+    for item in ROLE_DATA:
+        role, date, status = job_list_container.columns([2, 1, 1], gap="large", vertical_alignment="top")
+        
+        date.text(item["starting_date"])
+        status.text(item["status"])
+        role.markdown(button_style, unsafe_allow_html=True)
+
+        if role.markdown(f'<button class="custom-button">{item["role"]}</button>', unsafe_allow_html=True):
+            ROLE = item["role"]
+    
+            
+def matching_candidates():
+    st.title("Matching Candidates")
+    st.header(ROLE)
+    
+    title_header, summary_header, match_header = st.columns([2, 1, 1], gap="large", vertical_alignment="top")
+    title_header.markdown("<h1 style='font-size: 22px;'>Candidates Name</h1>", unsafe_allow_html=True)
+    summary_header.markdown("<h1 style='font-size: 22px;'>Summary</h1>", unsafe_allow_html=True)
+    match_header.markdown("<h1 style='font-size: 22px;'>Match</h1>", unsafe_allow_html=True)
+    
+    for candidate in CANDIDATES_DATA:
+        candidate_name, candidate_summary, match_percentage = st.columns([2, 1, 1], gap="large", vertical_alignment="top")
+        candidate_name.markdown(f"<h2 style='font-size: 18px;'>{candidate["name"]}</h1>", unsafe_allow_html=True)
+        candidate_summary.button("🔗Summary", key=candidate["name"])
+        
+        tag_color = custom_red_color
+        percentage = candidate["matching_percentage"]
+        if percentage >= 80:
+            tag_color = custom_green_color
+        
+        elif percentage >= 50:
+            tag_color = custom_yellow_color
+        
+        match_percentage.markdown(f"<span style='border: 2px solid {tag_color}; color: {tag_color}; padding: 0.5em 0.8em; border-radius: 0.5em; font-weight: bold;'>\
+                                    ★ {str(percentage)}%\
+                                    </span>", unsafe_allow_html=True)
+
+        with st.expander("Details"):
+            st.markdown(f"<h3 style='font-size: 15px;'>Matching Criteria</h3>", unsafe_allow_html=True)
+            
+            st.markdown("""
+                <style>
+                    .flex-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        margin-top: -20px;
+                        margin-bottom: 20px;
+                    }
+                    .skill-tag {
+                        border: 2px solid;
+                        padding: 0em 0.8em;
+                        border-radius: 0.5em;
+                    }
+                </style>
+            """, unsafe_allow_html=True)
+
+            flex_container = "<div class='flex-container'>"
+
+            for skill in candidate["matching_criteria"]:
+                flex_container += f"<span class='skill-tag' style='border-color: {custom_yellow_color}; color: white;'>{skill}</span>"
+
+            flex_container += "</div>"
+
+            st.markdown(flex_container, unsafe_allow_html=True)
+            
+            st.markdown(f"<h3 style='font-size: 15px;'>Attachment</h3>", unsafe_allow_html=True)
+
+            st.markdown(custom_blue_button, unsafe_allow_html=True)
+            st.markdown(f'<button class="custom-blue-button">🔗Resume</button>', unsafe_allow_html=True)
+        st.divider()
+
+            
+
+def new_position():
+    st.title("Create New Position")
+    st.text("AI-powered tool to generate Job Description instantly")
+    
+        
+    job_title = st.text_input("Job Title:")
+    job_requirement = st.text_input("Job Requirement:")
+
+    if st.button("Generate Job Description"):
+        st.text_area(
+            label="Generated Job Description",
+            value=generate_job_description(job_title, job_requirement, client).choices[0].message.content,
+            height=400,
+            max_chars=None,
+            key=None
+        )
+    
+
 if __name__ == "__main__":
     load_dotenv()
     client = OpenAI(api_key=os.getenv("OPENAI_SECRET"))
     main()
-    new_position()
+    show_job_listing()
     matching_candidates()
+    new_position()
+    
     
