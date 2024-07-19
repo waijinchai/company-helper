@@ -1,0 +1,23 @@
+Role Description:
+As an iOS Developer Intern at our company, you will have the opportunity to work closely with our experienced iOS development team to learn and contribute to the development of iOS applications. This internship program is designed to provide you with hands-on experience and mentorship to enhance your skills in iOS development.
+
+Day to Day Activities:
+- Collaborate with the team to design, develop, and maintain iOS applications.
+- Assist in implementing new features and functionality in iOS apps using Swift.
+- Support in troubleshooting and debugging issues to ensure the quality of the applications.
+- Learn and adopt best practices in iOS development under the guidance of senior developers.
+- Participate in code reviews and provide constructive feedback to improve coding standards.
+
+Requirements:
+- Basic knowledge of iOS development and the willingness to learn and grow in the field.
+- Familiarity with Swift programming language would be advantageous.
+- Strong problem-solving skills and attention to detail.
+- Ability to work well in a team environment and communicate effectively.
+- Available to commit to a 3-month internship program.
+
+Extra:
+- Exposure to mobile app development projects or personal projects related to iOS.
+- Understanding of mobile UI/UX design principles.
+- Knowledge of version control systems like Git.
+
+Note: This internship opportunity is ideal for individuals looking to kickstart their career in iOS development and gain valuable experience in a professional setting. We welcome candidates who are eager to learn and passionate about mobile app development.

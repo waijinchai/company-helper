@@ -1,0 +1,2 @@
+["Communication", "Problem Solving", "Teamwork"]
+["Swift", "iOS Development", "Git"]
