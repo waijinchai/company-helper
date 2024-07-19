@@ -343,7 +343,7 @@ def extract_skills(prompt, client):
 
 # Component Rendering
 def main():
-    st.title("Revolunizing Recruitment")
+    st.title("Revolutionizing Recruitment with AI")
     st.text("Reshaping the future of hiring and talent acquisition")
 
 def show_job_listing():
