@@ -178,10 +178,10 @@ def generate_job_description(job_title, job_requirement, client):
         },
         {
             "role": "user",
-            "content": f"Generate a job description for the job title: {job_title}, iOS and the job requirement: {job_requirement}"
+            "content": f"Generate a job description for the job title: {job_title} and the job requirement: {job_requirement}"
         }
         ],
-        max_tokens=400,
+        max_tokens=500,
         temperature=0.8
     )
 
@@ -216,9 +216,9 @@ def summarize_resume(text, client, softskill_criteria, promgramming_language_cri
             
             First list out the name of the candidate and then give a brief summary of the candidate's resume.
 
-            List out the softskill criteria that matches from this list: {softskill_criteria}
+            Only list out the softskill criteria of the candidates that matches from this list: {softskill_criteria}
             
-            List out the programming languages that matches from this list: {promgramming_language_criteria}
+            Only list out the programming languages of the candidates that matches from this list: {promgramming_language_criteria}
             """
         },
         {
@@ -317,7 +317,7 @@ o Achieved 98.55% accuracy on license plate characters recognition
 
 def extract_skills(prompt, client):
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4o",
         messages=[{
             "role": "system",
             "content": """Based on the job description given, you will extract the soft skills and programming skills required 
@@ -596,9 +596,12 @@ def preprocess_resume_response_data(resume_response):
     # Extract the programming languages
     programming_languages_pattern = r"Programming languages:\s*(.*)"
     programming_languages_match = re.search(programming_languages_pattern, candidate_string)
-    programming_languages = [lang.strip() for lang in programming_languages_match.group(1).split(',')] if not programming_languages_match else []
-
-
+    programming_languages = [lang.strip() for lang in programming_languages_match.group(1).split(',')] if programming_languages_match else []
+    
+    for input_str in programming_languages:
+        if "None" in input_str:
+            programming_languages = []
+            break
     return name, summary, soft_skills + programming_languages
     
 def generate_matching_score(job_description, client, softskill_criteria, promgramming_language_criteria, *resumes):

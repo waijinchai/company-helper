@@ -1,23 +1,23 @@
 Role Description:
-As an iOS Developer Intern at our company, you will have the opportunity to work closely with our experienced iOS development team to learn and contribute to the development of iOS applications. This internship program is designed to provide you with hands-on experience and mentorship to enhance your skills in iOS development.
+Join our team as a Java Software Engineer and play a key role in developing and maintaining cutting-edge Java applications that cater to our clients' diverse needs. You will be part of a dynamic and collaborative team that thrives on innovation and excellence in software development.
 
 Day to Day Activities:
-- Collaborate with the team to design, develop, and maintain iOS applications.
-- Assist in implementing new features and functionality in iOS apps using Swift.
-- Support in troubleshooting and debugging issues to ensure the quality of the applications.
-- Learn and adopt best practices in iOS development under the guidance of senior developers.
-- Participate in code reviews and provide constructive feedback to improve coding standards.
+- Collaborate with cross-functional teams to design, develop, and deploy robust Java applications that meet both client requirements and industry best practices.
+- Utilize your expertise in Java Spring to build scalable and efficient back-end solutions that power our various software products.
+- Design and optimize SQL databases to ensure data integrity and application performance.
+- Write clean, maintainable code and conduct thorough testing to deliver high-quality software solutions.
+- Stay updated on the latest Java technologies and best practices to continuously improve our development processes.
 
 Requirements:
-- Basic knowledge of iOS development and the willingness to learn and grow in the field.
-- Familiarity with Swift programming language would be advantageous.
-- Strong problem-solving skills and attention to detail.
-- Ability to work well in a team environment and communicate effectively.
-- Available to commit to a 3-month internship program.
+- Proven experience in developing Java applications, with a strong command of Java programming language and best practices.
+- Proficiency in Java Spring framework for building enterprise-scale applications.
+- Experience working with SQL databases and strong understanding of database design principles.
+- Ability to work independently as well as collaboratively in a team environment.
+- Strong problem-solving skills and a proactive attitude towards tackling challenges.
+- Bachelor's degree in Computer Science, Engineering, or related field.
 
 Extra:
-- Exposure to mobile app development projects or personal projects related to iOS.
-- Understanding of mobile UI/UX design principles.
-- Knowledge of version control systems like Git.
-
-Note: This internship opportunity is ideal for individuals looking to kickstart their career in iOS development and gain valuable experience in a professional setting. We welcome candidates who are eager to learn and passionate about mobile app development.
+- Experience with front-end technologies such as JavaScript, HTML, and CSS would be a plus.
+- Familiarity with cloud technologies and microservices architecture.
+- Experience with Agile development methodologies.
+- Relevant certifications in Java or related technologies.
