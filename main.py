@@ -1,5 +1,5 @@
 import streamlit as st
-import fitz
+# import fitz
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
