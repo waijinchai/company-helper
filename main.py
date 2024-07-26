@@ -772,7 +772,8 @@ Senior Manager (Software Development), Super Tech Sdn Bhd
 
 if __name__ == "__main__":
     load_dotenv()
-    client = OpenAI(api_key=os.getenv("OPENAI_SECRET"))
+    api_key = st.secrets["OPENAI_SECRET"]
+    client = OpenAI(api_key=api_key)
     main()
 
     new_position()
