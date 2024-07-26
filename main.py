@@ -3,7 +3,6 @@ import fitz
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
-from st_pages import Page, show_pages, add_page_title
 import re
 import ast
 
