@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 from st_pages import Page, show_pages, add_page_title
 import re
 import ast
-from firebase import FirebaseDB
 
 # CSS Style
 button_style = """
@@ -127,8 +126,6 @@ Extra:
 soft_skills = ""
 technical_skills = ""
 current_job_description = ""
-
-FirebaseDB_Instance = FirebaseDB()
 
 # Functions
 def generate_job_description(job_title, job_requirement, client):
